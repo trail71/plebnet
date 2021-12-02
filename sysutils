@@ -1,0 +1,163 @@
+#!/bin/bash
+
+# My First attempt at a small shell program #
+
+set -e
+
+
+# Start of Function naming
+
+
+# Main Menu script
+
+mainmenu () {
+
+echo
+echo "Please selection your option from the menu:"
+echo
+
+# Display Main Menu
+
+echo "======================================"
+echo "=                                    ="
+echo "=      PlebNet Sys Util Menu         ="
+echo "=                                    ="
+echo "======================================"
+echo
+echo "1. Display local and external IP and change MAC Address"
+echo "2. Check APT for updates and unstall"
+echo "3. Check system memory usage"
+echo "4. Quit"
+
+read menu
+
+if [[ $menu = "1" ]]; then
+	myip
+fi
+
+
+if [[ $menu = "2" ]]; then
+	clear
+	update
+	exitmenu
+fi
+
+
+if [[ $menu = "3" ]]; then
+    clear
+	sysuse
+	echo
+	exitmenu
+
+fi
+
+if [[ $menu = "4" ]]; then
+	clear
+	exit
+
+else
+	mainmenu
+
+fi
+
+}
+
+
+# Menu for exiting
+
+exitmenu () {
+
+echo
+echo "Do you want to quit?"
+echo "1. YES"
+echo "2. NO"
+
+read answer
+
+if [[ $answer = "1" ]]; then
+	clear
+	exit
+
+else
+	clear
+	mainmenu
+fi
+echo
+
+}
+
+
+# IP data and MAC changer
+
+myip () {
+
+clear
+
+echo "Current Public IP address:"
+curl checkip.amazonaws.com
+echo
+
+echo "Current MAC address:"
+macchanger -s enp0s3
+echo
+
+echo "Please make your selection."
+echo
+
+echo "Do you want to change the Mac Address?"
+echo "1. YES"
+echo "2. NO"
+read answer
+
+if [[ $answer = "1" ]]; then
+	echo
+	sudo macchanger -r enp0s3
+	echo "Mac address changed. All done."
+	echo
+	exitmenu
+fi
+
+if [[ $answer = "2" ]]; then
+	exitmenu
+fi
+
+}
+
+
+# Checking APT for updates
+
+update () {
+
+clear
+
+echo "Please wait while I check for updates"
+echo "(Enter sudo password if prompted)"
+echo
+sudo apt-get update -yy
+sudo apt-get dist-upgrade -yy
+
+}
+
+
+# Check system memory status and update timwe
+
+sysuse () {
+
+clear
+echo
+echo "Memory:"
+free -h
+echo
+echo "Disk usgage:"
+df -h
+echo
+echo "System Uptime:"
+uptime
+
+}
+
+
+# Main script body
+
+clear
+mainmenu
