@@ -27,7 +27,8 @@ echo
 echo "1. Display local and external IP and change MAC Address"
 echo "2. Check APT for updates and unstall"
 echo "3. Check system memory usage"
-echo "4. Quit"
+echo "4. Install Macchnger"
+echo "q. Quit"
 
 read menu
 
@@ -52,15 +53,16 @@ if [[ $menu = "3" ]]; then
 fi
 
 if [[ $menu = "4" ]]; then
-	clear
+	macinstall
+fi
+
+
+if [[ $menu = "q" ]]; then
 	exit
-
-else
-	mainmenu
-
 fi
 
 }
+
 
 
 # Menu for exiting
@@ -139,6 +141,19 @@ sudo apt-get dist-upgrade -yy
 }
 
 
+# Installing Macchanger
+
+macinstall () {
+clear
+echo
+sudo apt install macchanger
+echo "Macchangr installed"
+echo "Do you want to quit?"
+exitmenu
+
+}
+
+
 # Check system memory status and update timwe
 
 sysuse () {
@@ -158,6 +173,7 @@ uptime
 
 
 # Main script body
+# Begining of function call
 
 clear
 mainmenu
