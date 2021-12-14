@@ -28,6 +28,7 @@ echo "1. Display local and external IP and change MAC Address"
 echo "2. Check APT for updates and unstall"
 echo "3. Check system memory usage"
 echo "4. Install Macchnger"
+echo "5. Install PIA app"
 echo "q. Quit"
 
 read menu
@@ -57,7 +58,13 @@ if [[ $menu = "4" ]]; then
 fi
 
 
+if [[ $menu = "5" ]]; then
+	pia
+fi
+
+
 if [[ $menu = "q" ]]; then
+	clear
 	exit
 fi
 
@@ -154,7 +161,7 @@ exitmenu
 }
 
 
-# Check system memory status and update timwe
+# Check system memory status and update time
 
 sysuse () {
 
@@ -170,6 +177,24 @@ echo "System Uptime:"
 uptime
 
 }
+
+
+# download and install PIA
+
+pia () {
+
+cd /tmp/
+clear
+wget https://installers.privateinternetaccess.com/download/pia-linux-3.1.2-06767.run
+sh pia-linux-3.1.2-06767.run
+rm pia-linux-3.1.2-06767.run
+echo
+echo "PIA should now be installed - please login to be able to connect"
+echo
+exitmenu
+
+}
+
 
 
 # Main script body
