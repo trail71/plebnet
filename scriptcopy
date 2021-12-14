@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Code to copy plebnet script to /usr/bin
+
+clear
+echo
+echo "Copying script to Bin directory and activating:"
+cd /home/simon/Documents/Scripts/
+sudo cp plebnet /usr/bin/
+echo
+echo "Sript copy complete!"
