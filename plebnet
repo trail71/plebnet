@@ -28,7 +28,7 @@ echo "1. Display local and external IP and change MAC Address"
 echo "2. Check APT for updates and unstall"
 echo "3. Check system memory usage"
 echo "4. Install Macchnger"
-echo "5. Install Mullvlad VPN"
+echo "5. Install Mullvad VPN"
 echo "q. Quit"
 
 read menu
@@ -59,7 +59,7 @@ fi
 
 
 if [[ $menu = "5" ]]; then
-	mullvlad
+	mullvad
 fi
 
 
@@ -181,7 +181,7 @@ uptime
 
 # download and install PIA
 
-mullvlad () {
+mullvad () {
 
 cd /tmp/
 clear
